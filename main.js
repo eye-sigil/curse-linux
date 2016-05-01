@@ -3,11 +3,17 @@
 
 const electron = require('electron');
 const app = require('app');
+const shell = require('shell');
 const BrowserWindow = require('browser-window')
+// const run = require('child_process');
 
 //var loadWindow = null;
 var mainWindow = null;
 //var connected = false;
+
+// openBrowser(url) = {
+//   run.exec('xdg-open ' + url);
+// }
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -33,6 +39,13 @@ app.on('ready', function() {
 		title: 'Curse',
 		'autoHideMenuBar': true});
 	mainWindow.loadURL('file://' + __dirname + '/index.html');
+
+	var webContents = mainWindow.webContents;
+
+	webContents.on('will-navigate', function(e,url) {
+		e.preventDefault();
+		shell.openExternal(url);
+	});
 
 	mainWindow.on('closed', function() {
 		mainWindow = null;
