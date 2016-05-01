@@ -1,5 +1,12 @@
 {
   "name"    : "curse-linux",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+  "productname": "Curse",
+  "version" : "0.0.1",
+  "description": "A client for the Curse communications app",
+  "main"    : "main.js",
+  "author"  : "eyesigil",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eye-sigil/curse-linux.git"
+  },
 }
