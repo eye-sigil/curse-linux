@@ -1,5 +1,5 @@
 # curse-linux
-An unofficial client for the Curse communications application.
+An unofficial Linux client for the Curse communications application.
 
 #Downloads
 Coming soon.
