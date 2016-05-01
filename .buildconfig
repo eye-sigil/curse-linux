@@ -1,0 +1,6 @@
+[default]
+name=Default Configuration
+device=local
+runtime=host
+prefix=/home/user/.cache/gnome-builder/install/curse-linux/host
+default=true

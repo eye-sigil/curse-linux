@@ -5,16 +5,9 @@ const electron = require('electron');
 const app = require('app');
 const shell = require('shell');
 const BrowserWindow = require('browser-window')
-const run = require('child_process');
+const shortcut = require('global-shortcut');
 
-//var loadWindow = null;
-var mainWindow = null;
-var mainPage = __dirname + 'index.html';
-//var connected = false;
-
-// openBrowser(url) = {
-//   run.exec('xdg-open ' + url);
-// }
+var win = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -24,37 +17,51 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-	//Loading Screen
-	// loadWindow = new BrowserWindow({width: 800,
-	// 	height: 480,
-	// 	icon: __dirname + '/icon.png',
-	// 	title: "Curse",
-	// 	'autoHideMenuBar': true,
-	// 	frame: false});
-	// loadWindow.setResizable(false);
-	// loadWindow.loadURL('file://' + __dirname + '/load.html');
 
-	mainWindow = new BrowserWindow({width: 1100,
+	win = new BrowserWindow({width: 1100,
 		height: 750,
 		icon: __dirname + '/icon.png',
 		title: 'Curse',
 		'autoHideMenuBar': true});
-	mainWindow.loadURL('file://' + __dirname + '/index.html');
+	win.loadURL('https://www.curse.com/home');
 
-	// document.on('click', 'a[href^="http"]', function(event) {
-	// 	event.preventDefault();
-	// 	shell.openExternal(this.href);
-	// });
-
-	var webContents = mainWindow.webContents;
-
-	webContents.on('will-navigate', function(e,url) {
-		e.preventDefault();
-		run.execSync('xdg-open ' + url);
+	shortcut.register('F5', function() {
+		win.reload();
+	});
+	shortcut.register('F12', function() {
+		win.toggleDevTools();
 	});
 
-	mainWindow.on('closed', function() {
-		mainWindow = null;
+	win.on('will-navigate', function(e,url) {
+		e.preventDefault();
+		shell.openExternal(url);
+	});
+
+	win.on('closed', function() {
+		win = null;
 	});
 
 });
+
+//Loading Screen
+
+//var loadWindow = null;
+//var connected = false;
+
+// loadWindow = new BrowserWindow({width: 800,
+// 	height: 480,
+// 	icon: __dirname + '/icon.png',
+// 	title: "Curse",
+// 	'autoHideMenuBar': true,
+// 	frame: false});
+// loadWindow.setResizable(false);
+// loadWindow.loadURL('file://' + __dirname + '/load.html');
+
+//Alt External Link
+
+// const run = require('child_process');
+
+// document.on('click', 'a[href^="http"]', function(event) {
+// 	event.preventDefault();
+// 	shell.openExternal(this.href);
+// });
