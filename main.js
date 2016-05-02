@@ -23,7 +23,7 @@ app.on('ready', function() {
 		icon: __dirname + '/icon.png',
 		title: 'Curse',
 		'autoHideMenuBar': true});
-	win.loadURL('https://www.curse.com/home');
+	win.loadURL('https://www.curse.com/login');
 
 	shortcut.register('F5', function() {
 		win.reload();
