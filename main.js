@@ -3,9 +3,9 @@
 
 const electron = require('electron');
 const app = require('app');
-const shell = require('shell');
-const BrowserWindow = require('browser-window')
+const BrowserWindow = require('browser-window');
 const shortcut = require('global-shortcut');
+const run = require('child_process');
 
 var win = null;
 
@@ -32,9 +32,9 @@ app.on('ready', function() {
 		win.toggleDevTools();
 	});
 
-	win.on('will-navigate', function(e,url) {
+	win.webContents.on('new-window', function(e, url) {
 		e.preventDefault();
-		shell.openExternal(url);
+		run.execSync('xdg-open ' + url);
 	});
 
 	win.on('closed', function() {
@@ -58,8 +58,6 @@ app.on('ready', function() {
 // loadWindow.loadURL('file://' + __dirname + '/load.html');
 
 //Alt External Link
-
-// const run = require('child_process');
 
 // document.on('click', 'a[href^="http"]', function(event) {
 // 	event.preventDefault();

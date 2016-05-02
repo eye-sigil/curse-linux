@@ -1,5 +1,9 @@
 {
-  "name"    : "curse-linux",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+  "name": "curse-linux",
+  "productName": "Curse",
+  "version": "0.1.0",
+  "main": "main.js",
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.8"
+  }
 }
