@@ -1,0 +1,11 @@
+{
+  "devDependencies" : {
+    "electron-builder"  : "^3.16.0",
+    "electron-prebuilt" : "^0.37.8"
+  },
+  "build"   : {
+    "linux" : {
+        "sypnosis"  : "Unofficial Linux client for the Curse communications application."
+    }
+  }
+}
